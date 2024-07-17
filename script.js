@@ -12,8 +12,8 @@ parcelas1() {
 alert(`${} parcelas de x valor`)
 }
 
-numeroDeParcelas() => {
-
+multiplicacaoDaParcela() => {
+this.valor = this.valor * 5
 }
 
 
