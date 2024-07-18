@@ -29,5 +29,14 @@ calcularParcela () {
 
 } 
 
+function mostrarResultados(valorTotal, numeroDeParcelas) {
+    const parcelamento = new calculadoParcelamento (valorTotal, 0, numeroDeParcelas);
+    console.log(`Valor Total: R$ ${valorTotal}`);
+    console.log(`Número de Parcelas: ${numeroDeParcelas}`);
+    console.log(`Taxa de Juros Anual Ajustada: ${parcelamento.taxaDeJuros}%`);
 
+    const valorParcela = calculadora.calcularParcela();
+    
+    console.log(`Valor da Parcela: R$ ${valorParcela}`);
+}
 
