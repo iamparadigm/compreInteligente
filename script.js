@@ -40,3 +40,37 @@ function mostrarResultados(valorTotal, numeroDeParcelas) {
     console.log(`Valor da Parcela: R$ ${valorParcela}`);
 }
 
+
+const Produtos = [
+    { nome: 'Apple Iphone 14',
+      ram: 128gb,
+      valorTotal: 3952.00,  
+ },
+
+
+    { nome: 'Samsung Galaxy S23', 
+      ram: 128gb,
+      valorTotal: 2785.95,  
+  
+      },
+
+    { nome: 'Xaiomi Redmi Note 12', 
+      ram: 256gb,
+      valorTotal: 1027.22,  
+  
+      },
+
+    { nome: 'Motorola Moto G54',
+      ram: 256gb,
+      valorTotal: 1078.52 
+  
+      },
+
+  ]
+
+
+
+
+
+
+
