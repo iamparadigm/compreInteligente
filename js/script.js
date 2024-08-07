@@ -41,7 +41,7 @@ function mostrarResultados(valorTotal, numeroDeParcelas) {
     console.log(`Valor da Parcela: R$ ${valorParcela}`);
 }
 
-*/
+
 
 
 
@@ -114,7 +114,7 @@ if (resultadoValidacao === true) {
 } else {
     console.log(resultadoValidacao); // Exibe a mensagem de erro
 }
-*/
+
 
 const modal = document.querySelector('.modal-container')
 const sNome = document.querySelector('#m-nome')
@@ -185,7 +185,7 @@ function insertItem(item, index) {
   `
   tbody.appendChild(tr)
 }
-  */
+  
 
 btnSalvar.onclick = e => {
   
@@ -213,7 +213,7 @@ btnSalvar.onclick = e => {
   id = undefined
 }
 
-/*
+
 function loadItens() {
   itens = getItensBD()
   tbody.innerHTML = ''
@@ -222,12 +222,36 @@ function loadItens() {
   })
 
 }
-  */
+  
 
 const getItensBD = () => JSON.parse(localStorage.getItem('dbfunc')) ?? []
 const setItensBD = () => localStorage.setItem('dbfunc', JSON.stringify(itens))
 
-/*loadItens()*/
+loadItens()
+*/
+
+const produtos = [
+  {id: 1, nome: "Iphone 14 Pro Max", preço:5000.00}
+
+  {id: 2, nome: "Galaxy", preço:2500.00}
+
+  {id: 3, nome: "Câmera Mirrorles Sony Alpha a72", preço:5000.00}
+
+  {id: 4, nome: "Câmera Mirrorles Sony Alpha a72", preço:5000.00}
+
+  {id: 5, nome: "Câmera Mirrorles Sony Alpha a72", preço:5000.00}
+
+  {id: 6, nome: "Câmera Mirrorles Sony Alpha a72", preço:5000.00}
+
+  {id: 7, nome: "Câmera Mirrorles Sony Alpha a72", preço:5000.00}
+
+  {id: 8, nome: "Câmera Mirrorles Sony Alpha a72", preço:5000.00}
+
+
+  
+]
+
+
 
 
 
