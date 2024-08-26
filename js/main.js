@@ -197,7 +197,9 @@
 
 
 
+const blog = document.getElementsByClassName('"col-lg-12"')
 
+console.log('blog')
 
 
 
