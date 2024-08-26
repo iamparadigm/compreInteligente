@@ -235,17 +235,17 @@ const produtos = [
 
   {id: 2, nome: "Galaxy", preço:2500.00}
 
-  {id: 3, nome: "Câmera Mirrorles Sony Alpha a72", preço:5000.00}
+  {id: 3, nome: "Câmera Mirrorles Sony Alpha a72", preço:10000.00}
 
-  {id: 4, nome: "Câmera Mirrorles Sony Alpha a72", preço:5000.00}
+  {id: 4, nome: "smart Watches", preço:300.00}
 
-  {id: 5, nome: "Câmera Mirrorles Sony Alpha a72", preço:5000.00}
+  {id: 5, nome: "Desktop Gamer Auora", preço:1300.00}
 
-  {id: 6, nome: "Câmera Mirrorles Sony Alpha a72", preço:5000.00}
+  {id: 6, nome: "Laptop Ultra fino Zen Book Pro", preço:2000.00}
 
-  {id: 7, nome: "Câmera Mirrorles Sony Alpha a72", preço:5000.00}
+  {id: 7, nome: "Impressora multi funcional EcoTank L3250", preço:450.00}
 
-  {id: 8, nome: "Câmera Mirrorles Sony Alpha a72", preço:5000.00}
+  {id: 8, nome: "Ipad Pro", preço:8000.00}
 
 
   
