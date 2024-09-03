@@ -1,6 +1,6 @@
 ;(function ($, document, window) {
     var
-    // default settings object.
+  // Objeto com as configurações padrão
         defaults = {
             label: 'MENU',
             duplicate: true,
@@ -44,13 +44,10 @@
     function Plugin(element, options) {
         this.element = element;
 
-        // jQuery has an extend method which merges the contents of two or
-        // more objects, storing the result in the first object. The first object
-        // is generally empty as we don't want to alter the default options for
-        // future instances of the plugin
+        
         this.settings = $.extend({}, defaults, options);
 
-        // Don't remove IDs by default if duplicate is false
+  
         if (!this.settings.duplicate && !options.hasOwnProperty("removeIds")) {
           this.settings.removeIds = false;
         }
@@ -68,14 +65,14 @@
             iconClass,
             menuBar;
 
-        // clone menu if needed
+       // clonar menu se necessário
         if (settings.duplicate) {
             $this.mobileNav = menu.clone();
         } else {
             $this.mobileNav = menu;
         }
 
-        // remove IDs if set
+        // remover ID se definido
         if (settings.removeIds) {
           $this.mobileNav.removeAttr('id');
           $this.mobileNav.find('*').each(function (i, e) {
@@ -83,7 +80,7 @@
           });
         }
 
-        // remove classes if set
+        // / remover classes se definido
         if (settings.removeClasses) {
             $this.mobileNav.removeAttr('class');
             $this.mobileNav.find('*').each(function (i, e) {
@@ -91,7 +88,7 @@
             });
         }
 
-        // remove styles if set
+        // remove stylos se definido
         if (settings.removeStyles) {
             $this.mobileNav.removeAttr('style');
             $this.mobileNav.find('*').each(function (i, e) {
@@ -99,7 +96,7 @@
             });
         }
 
-        // styling class for the button
+     // classe de estilo para o botão
         iconClass = prefix + '_icon';
 
         if (settings.label === '') {
@@ -110,7 +107,7 @@
             settings.parentTag = 'a href="#"';
         }
 
-        // create menu bar
+        // menu  barra 
         $this.mobileNav.attr('class', prefix + '_nav');
         menuBar = $('<div class="' + prefix + '_menu"></div>');
 		if (settings.brand !== '') {
@@ -136,7 +133,7 @@
         }
         menuBar.append($this.mobileNav);
 
-        // iterate over structure adding additional structure
+        // iterar sobre a estrutura adicionando estrutura adicional
         var items = $this.mobileNav.find('li');
         $(items).each(function () {
             var item = $(this),
@@ -144,11 +141,10 @@
             data.children = item.children('ul').attr('role', 'menu');
             item.data('menu', data);
 
-            // if a list item has a nested menu
+             // se um item da lista tiver um menu aninhado
             if (data.children.length > 0) {
 
-                // select all text before the child menu
-                // check for anchors
+                // selecionar todo o texto antes do menu filho // verificar se há âncoras
 
                 var a = item.contents(),
                     containsAnchor = false,
@@ -170,7 +166,8 @@
                     '<' + settings.parentTag + ' role="menuitem" aria-haspopup="true" tabindex="-1" class="' + prefix + '_item"/>'
                 );
 
-                // wrap item text with tag and add classes unless we are separating parent links
+              // envolver o texto do item com uma tag e adicionar classes, a menos que estejamos separando links pai
+              
                 if ((!settings.allowParentLinks || settings.nestedParentLinks) || !containsAnchor) {
                     var $wrap = $(nodes).wrapAll(wrapElement).parent();
                     $wrap.addClass(prefix+'_row');
@@ -185,13 +182,13 @@
 
                 item.addClass(prefix+'_parent');
 
-                // create parent arrow. wrap with link if parent links and separating
+                // criar seta pai. Envolver com link se houver links pai e separação
                 var arrowElement = $('<span class="'+prefix+'_arrow">'+(settings.showChildren?settings.openedSymbol:settings.closedSymbol)+'</span>');
 
                 if (settings.allowParentLinks && !settings.nestedParentLinks && containsAnchor)
                     arrowElement = arrowElement.wrap(wrapElement).parent();
 
-                //append arrow
+                //anexar arrow
                 $(nodes).last().after(arrowElement);
 
 
@@ -201,28 +198,28 @@
 
             // accessibility for links
             item.children('a').attr('role', 'menuitem').click(function(event){
-                //Ensure that it's not a parent
+                // Certifique-se de que não seja um pai
                 if (settings.closeOnClick && !$(event.target).parent().closest('li').hasClass(prefix+'_parent')) {
-                        //Emulate menu close if set
+                        // Emular o fechamento do menu se definido
                         $($this.btn).click();
                     }
             });
 
-            //also close on click if parent links are set
+            // também fechar ao clicar se os links pai estiverem definidos
             if (settings.closeOnClick && settings.allowParentLinks) {
                 item.children('a').children('a').click(function (event) {
-                    //Emulate menu close
+                    // Emular o fechamento do menu
                     $($this.btn).click();
                 });
 
                 item.find('.'+prefix+'_parent-link a:not(.'+prefix+'_item)').click(function(event){
-                    //Emulate menu close
+                    // Emular o fechamento do menu
                         $($this.btn).click();
                 });
             }
         });
 
-        // structure is in place, now hide appropriate items
+        // a estrutura está no lugar, agora ocultar os itens apropriados
         $(items).each(function () {
             var data = $(this).data('menu');
             if (!settings.showChildren){
@@ -230,13 +227,13 @@
             }
         });
 
-        // finally toggle entire menu
+         // finalmente alternar todo o menu
         $this._visibilityToggle($this.mobileNav, null, false, 'init', true);
 
-        // accessibility for menu button
+        // acessibilidade para o botão do menu
         $this.mobileNav.attr('role','menu');
 
-        // outline prevention when using mouse
+        // prevenção de contorno quando usando o mouse
         $(document).mousedown(function(){
             $this._outlines(false);
         });
@@ -257,7 +254,7 @@
             $this._itemClick($(this));
         });
 
-        // check for keyboard events on menu button and menu parents
+        // verificar eventos de teclado no botão do menu e nos pais dos menus
         $($this.btn).keydown(function (e) {
             var ev = e || event;
 
@@ -336,7 +333,7 @@
             }
         });
 
-        // allow links clickable within parent tags if set
+         // permitir que links sejam clicáveis dentro de tags pai se definido
         if (settings.allowParentLinks && settings.nestedParentLinks) {
             $('.'+prefix+'_item a').click(function(e){
                     e.stopImmediatePropagation();
@@ -393,7 +390,7 @@
         }
     };
 
-    // toggle actual visibility and accessibility tags
+ // alternar a visibilidade real e as tags de acessibilidade
     Plugin.prototype._visibilityToggle = function(el, parent, animate, trigger, init) {
         var $this = this;
         var settings = $this.settings;
@@ -407,7 +404,7 @@
             $(trigger).removeClass(prefix+'_animating');
             $(parent).removeClass(prefix+'_animating');
 
-            //Fire afterOpen callback
+            //iniciar o callback depois de aberto
             if (!init) {
                 settings.afterOpen(trigger);
             }
@@ -477,7 +474,7 @@
         }
     };
 
-    // set attributes of element and children based on visibility
+    // definir atributos do elemento e dos filhos com base na visibilidade
     Plugin.prototype._setVisAttr = function(el, hidden) {
         var $this = this;
 
@@ -504,7 +501,7 @@
         }
     };
 
-    // get all 1st level items that are clickable
+ // obter todos os itens de primeiro nível que são clicáveis
     Plugin.prototype._getActionItems = function(el) {
         var data = el.data("menu");
         if (!data) {
@@ -547,37 +544,38 @@
     $.fn[mobileMenu] = function ( options ) {
         var args = arguments;
 
-        // Is the first parameter an object (options), or was omitted, instantiate a new instance
+       // O primeiro parâmetro é um objeto (opções) ou foi omitido, instanciar uma nova instância
         if (options === undefined || typeof options === 'object') {
             return this.each(function () {
 
-                // Only allow the plugin to be instantiated once due to methods
+                // Permitir que o plugin seja instanciado apenas uma vez devido a métodos
                 if (!$.data(this, 'plugin_' + mobileMenu)) {
 
-                    // if it has no instance, create a new one, pass options to our plugin constructor,
-                    // and store the plugin instance in the elements jQuery data object.
+                    // se não tiver uma instância, crie uma nova, passe as opções para o nosso construtor de plugin, // e armazene a instância do plugin no objeto de dados jQuery dos elementos.
+
                     $.data(this, 'plugin_' + mobileMenu, new Plugin( this, options ));
                 }
             });
 
-        // If is a string and doesn't start with an underscore or 'init' function, treat this as a call to a public method.
+        // Se for uma string e não começar com um underscore ou a função 'init', trate isso como uma chamada para um método público.
         } else if (typeof options === 'string' && options[0] !== '_' && options !== 'init') {
 
-            // Cache the method call to make it possible to return a value
+            // Armazenar em cache a chamada do método para que seja possível retornar um valor
             var returns;
 
             this.each(function () {
                 var instance = $.data(this, 'plugin_' + mobileMenu);
 
-                // Tests that there's already a plugin-instance and checks that the requested public method exists
+               // Verifica se já existe uma instância do plugin e verifica se o método público solicitado existe
+
                 if (instance instanceof Plugin && typeof instance[options] === 'function') {
 
-                    // Call the method of our plugin instance, and pass it the supplied arguments.
+                    // Chamar o método da nossa instância de plugin e passar a ele os argumentos fornecidos.
                     returns = instance[options].apply( instance, Array.prototype.slice.call( args, 1 ) );
                 }
             });
 
-            // If the earlier cached method gives a value back return the value, otherwise return this to preserve chainability.
+            // Se o método armazenado em cache anterior retornar um valor, retorne o valor, caso contrário, retorne este para preservar a encadeamento.
             return returns !== undefined ? returns : this;
         }
     };
